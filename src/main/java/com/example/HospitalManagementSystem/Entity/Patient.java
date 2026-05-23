@@ -8,6 +8,7 @@ import lombok.*;
 import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(
@@ -34,11 +35,11 @@ public class Patient {
     private String gender;
     @Enumerated(EnumType.STRING)
     private BloodGroup blood_group;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name="Patient_Insurance_Id")
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",cascade={CascadeType.REMOVE})//if we remove the patient then the appointment data of that patient will be removed
     @ToString.Exclude
-    private List<Appointment> appointments;
+    private List<Appointment> appointments=new ArrayList<>();
 }

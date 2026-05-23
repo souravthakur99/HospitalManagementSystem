@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Appointment {
 @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,5 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Doctor doctor;
-
 
 }

@@ -35,7 +35,7 @@ public class Patient {
     private String gender;
     @Enumerated(EnumType.STRING)
     private BloodGroup blood_group;
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},orphanRemoval = true)
     @JoinColumn(name="Patient_Insurance_Id")
     private Insurance insurance;
 
